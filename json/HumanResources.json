@@ -1,0 +1,1233 @@
+{
+  "luis_schema_version": "3.2.0",
+  "versionId": "no_geo_pb",
+  "name": "HumanResources",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "ApplyForJob"
+    },
+    {
+      "name": "EmployeeFeedback"
+    },
+    {
+      "name": "EmployeeRelocation"
+    },
+    {
+      "name": "EmployeeTitleChange"
+    },
+    {
+      "name": "Farewell"
+    },
+    {
+      "name": "FindForm"
+    },
+    {
+      "name": "GetJobInformation"
+    },
+    {
+      "name": "Greetings"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "TransferEmployee"
+    },
+    {
+      "name": "Utilities.Cancel",
+      "inherits": {
+        "domain_name": "Utilities",
+        "model_name": "Cancel"
+      }
+    },
+    {
+      "name": "Utilities.Confirm",
+      "inherits": {
+        "domain_name": "Utilities",
+        "model_name": "Confirm"
+      }
+    },
+    {
+      "name": "Utilities.Help",
+      "inherits": {
+        "domain_name": "Utilities",
+        "model_name": "Help"
+      }
+    },
+    {
+      "name": "Utilities.StartOver",
+      "inherits": {
+        "domain_name": "Utilities",
+        "model_name": "StartOver"
+      }
+    },
+    {
+      "name": "Utilities.Stop",
+      "inherits": {
+        "domain_name": "Utilities",
+        "model_name": "Stop"
+      }
+    }
+  ],
+  "entities": [
+    {
+      "name": "CotractActions",
+      "roles": []
+    },
+    {
+      "name": "EmployeeTitle",
+      "children": [
+        "CurrentTitle",
+        "NewTitle"
+      ],
+      "roles": []
+    },
+    {
+      "name": "Location",
+      "children": [
+        "Destination",
+        "Source",
+        "Regular"
+      ],
+      "roles": []
+    },
+    {
+      "name": "Salary",
+      "children": [
+        "CurrentSalary",
+        "NewSalary",
+        "SalaryType"
+      ],
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [
+    {
+      "name": "Department",
+      "subLists": [
+        {
+          "canonicalForm": "Accounting",
+          "list": [
+            "acc",
+            "acct",
+            "accting",
+            "1234"
+          ]
+        },
+        {
+          "canonicalForm": "Information Technologies",
+          "list": [
+            "IT",
+            "Sysadmins",
+            "1235"
+          ]
+        },
+        {
+          "canonicalForm": "Development and Operations",
+          "list": [
+            "DevOps",
+            "1236"
+          ]
+        },
+        {
+          "canonicalForm": "Engineering",
+          "list": [
+            "eng",
+            "enging",
+            "12347"
+          ]
+        },
+        {
+          "canonicalForm": "Financial",
+          "list": [
+            "fin",
+            "12348"
+          ]
+        },
+        {
+          "canonicalForm": "Internal Sales",
+          "list": [
+            "IS",
+            "isale",
+            "insale",
+            "12349"
+          ]
+        },
+        {
+          "canonicalForm": "External Sales",
+          "list": [
+            "ES",
+            "esale",
+            "exsale",
+            "12351"
+          ]
+        },
+        {
+          "canonicalForm": "Research and Development",
+          "list": [
+            "R&S",
+            "rnd",
+            "randd",
+            "12352"
+          ]
+        }
+      ],
+      "roles": []
+    }
+  ],
+  "patternAnyEntities": [],
+  "regex_entities": [
+    {
+      "name": "HR-number",
+      "regexPattern": "hrf-[0-9]{6}",
+      "roles": []
+    }
+  ],
+  "prebuiltEntities": [
+    {
+      "name": "datetimeV2",
+      "roles": []
+    },
+    {
+      "name": "number",
+      "roles": []
+    },
+    {
+      "name": "ordinal",
+      "roles": []
+    },
+    {
+      "name": "personName",
+      "roles": []
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "a yes from me",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "alex miroshnyk is the worse employee ever",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "alex should be transferred from london to manchester",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 32,
+          "endPos": 37
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 42,
+          "endPos": 51
+        }
+      ]
+    },
+    {
+      "text": "aloha",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "alright i am confirming",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "any new jobs posted today?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "apply for devops job 5678749",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "are there any new positions in the seattle office?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "are there any remote worker or telecommute jobs open for engineers?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "author of hrf-546234?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "barking dogs are annoying",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "bob barnes didn't have all the required invoices for the paperwork.",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "book a flight for me",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "book me a flight to seattle",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "bye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "can just be quiet you ' re giving me a headache",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "can you help me ?",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "can you help me here",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "can you restart for me ?",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel brawl",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel expanse",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel it",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel navigation",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel silent hours",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "carl chamerlin from san francisco to redmond",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 20,
+          "endPos": 32
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 37,
+          "endPos": 43
+        }
+      ]
+    },
+    {
+      "text": "carl chamerlin to finance",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "change jon doe title from senior systems engineer to leading systems engineer",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::CurrentTitle",
+          "startPos": 26,
+          "endPos": 48
+        },
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 53,
+          "endPos": 76
+        }
+      ]
+    },
+    {
+      "text": "delete that and start again",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "denise dillard missed the meeting for june reviews.",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "dept 1234 has a new member named bill bradstreet",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "did john smith update hrf-234639 last week?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "fill out application for job 123456",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "good afternoon!",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "good i am confirming",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "good morning!",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "greetings",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "have a great day",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "help me please",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "help me to start",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "help me to understand more please",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "help me with this",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "help with my device please",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "here is my c.v. for position 654234",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "here is my resume for the part-time receptionist post.",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "hi there",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "how are you doing?",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "how many people need to sign off on hrf-345678?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "how many versions of hrf-345123 are there?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "hrf-234123 date?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "i don ' t want that . go back home",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "i need to begin over and restart",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "i need your help",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "i want to apply for the new accounting job",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "i want to cancel",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "i want to do restart",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "i'm applying for the art desk job with this paperwork.",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "i'm applying for the summer college internship in research and development in san diego",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 78,
+          "endPos": 86
+        }
+      ]
+    },
+    {
+      "text": "i'm looking for a co-working situation in the tampa office.",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "i'm requesting to submit my resume to the temporary position in the cafeteria.",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "i'm submitting my resume for the new autocar team in columbus",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 53,
+          "endPos": 60
+        }
+      ]
+    },
+    {
+      "text": "is it cold outside?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "is there an internship in the san francisco office?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "is there any devops jobs?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "is there any part-time work for people in college?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "is there any work with databases?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "it has been a while",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "jane doe is the worse",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "jill jones did a great job of comforting a co-worker in her time of grief.",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "job 456789 accounting internship paperwork is here",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "job 567890 and my paperwork",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "joe doe did a great job in seattle",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "john smith did a nice job of welcoming back a co-worker from maternity leave",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "jon doe has been promoted to lead systems engineer, please change the title",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 29,
+          "endPos": 49
+        }
+      ]
+    },
+    {
+      "text": "katherine kelly didn't make it to the important marketing off-site meeting.",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "let ' s restart",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "let me start it again from scratch",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "lift tanner thompson from kansas city and shift to chicago",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 26,
+          "endPos": 36
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 51,
+          "endPos": 57
+        }
+      ]
+    },
+    {
+      "text": "looking for a job in new york city for bilingual speakers.",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "looking for a new situation with responsibilities in accounting",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "make a call to bob",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "mark mathews rocked the sales pitch at harvard",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "move alex miroshnyk from it to devops",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "move alex miroshnyk from uk to poland",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 25,
+          "endPos": 26
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 31,
+          "endPos": 36
+        }
+      ]
+    },
+    {
+      "text": "move alex to it",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "move debra doughtery to inside sales",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "move debra doughtery to tulsa from dallas",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Destination",
+          "startPos": 24,
+          "endPos": 28
+        },
+        {
+          "entity": "Location::Source",
+          "startPos": 35,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "move john w. smith from it to the accounting department",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "move tanner thompson from kansas city to chicago",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 26,
+          "endPos": 36
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 41,
+          "endPos": 47
+        }
+      ]
+    },
+    {
+      "text": "mv jill jones leaving cairo headed to tampa",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 22,
+          "endPos": 26
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 38,
+          "endPos": 42
+        }
+      ]
+    },
+    {
+      "text": "mv jill jones to it",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "my papers for the tulsa accounting internship are attached.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 18,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "my paperwork for the holiday delivery position",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "new jobs?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "new title for alex miroshnyk should be changed to dm",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 50,
+          "endPos": 51
+        }
+      ]
+    },
+    {
+      "text": "no thank you",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "not tomorrow please",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "ok thanks",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "okay",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "okay for now",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "old title for jon doe should be changed from systems engineer to senior systems engineer",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::CurrentTitle",
+          "startPos": 45,
+          "endPos": 60
+        },
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 65,
+          "endPos": 87
+        }
+      ]
+    },
+    {
+      "text": "order a pizza for me",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "penguins in the ocean",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "phone be quiet for 5 minutes .",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "place john jackson away from tampa, coming to atlanta",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 29,
+          "endPos": 33
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 46,
+          "endPos": 52
+        }
+      ]
+    },
+    {
+      "text": "place john jackson in engineering",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "please cancel my trip to seattle",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "please do restarting",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "please help me",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "please help me i want to finish",
+      "intent": "Utilities.Help",
+      "entities": []
+    },
+    {
+      "text": "please restart the search",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "please send my resume for the new accounting job in seattle",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 52,
+          "endPos": 58
+        }
+      ]
+    },
+    {
+      "text": "promote alex miroshnyk to solution architect",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 26,
+          "endPos": 43
+        }
+      ]
+    },
+    {
+      "text": "promote jane doe to dm",
+      "intent": "EmployeeTitleChange",
+      "entities": [
+        {
+          "entity": "EmployeeTitle::NewTitle",
+          "startPos": 20,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "quit help",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "relocate alex from poland to uk",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 19,
+          "endPos": 24
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 29,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "restart please",
+      "intent": "Utilities.StartOver",
+      "entities": []
+    },
+    {
+      "text": "see you later",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "shift alice anderson to devops",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "shift alice anderson to oakland from redmond",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Destination",
+          "startPos": 24,
+          "endPos": 30
+        },
+        {
+          "entity": "Location::Source",
+          "startPos": 37,
+          "endPos": 43
+        }
+      ]
+    },
+    {
+      "text": "show me all the jobs for engineers that were added in the last 2 days.",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "shut up",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "shut up .",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "so long",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "steve standish to 1234",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "stop it you are really annoying",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "stop listening",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "stop please",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "stop saying that please",
+      "intent": "Utilities.Stop",
+      "entities": []
+    },
+    {
+      "text": "submit resume for devops",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "submit resume for engineering position",
+      "intent": "ApplyForJob",
+      "entities": []
+    },
+    {
+      "text": "sure i confirm",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "talk toyou later",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "tanner thompson to 3456",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "this is my c.v. for post 234123 in tampa.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 35,
+          "endPos": 39
+        }
+      ]
+    },
+    {
+      "text": "title of hrf-456234?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "today's job postings?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "todd thomas turned in the required forms a month late with no signatures",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "transfer jill jones from seattle to cairo",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 25,
+          "endPos": 31
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 36,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "transfer jill jones from to r&d",
+      "intent": "TransferEmployee",
+      "entities": []
+    },
+    {
+      "text": "transfer jill jones from uk to usa",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 25,
+          "endPos": 26
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 31,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "transfer steve standish from san diego toward bellevue",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 29,
+          "endPos": 37
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 46,
+          "endPos": 53
+        }
+      ]
+    },
+    {
+      "text": "wait never mind i just told you never mind",
+      "intent": "Utilities.Cancel",
+      "entities": []
+    },
+    {
+      "text": "walter williams did a great job on the presentation at stanford",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "what accounting positions are open in the london office?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "what is devops",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is the url for hrf-123456?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "what is the weather in seattle today?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what positions are available for senior engineers?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "what's up",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "when was hrf-456098 updated?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "when were hrf-123456 and hrf-234567 published in the last year?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "where is hrf-345678?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "where is the job listings",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "who needs to authorize form hrf-123456?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "yeah ohh i confirm",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "yep agreed",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    },
+    {
+      "text": "yes i saw",
+      "intent": "Utilities.Confirm",
+      "entities": []
+    }
+  ],
+  "settings": []
+}
