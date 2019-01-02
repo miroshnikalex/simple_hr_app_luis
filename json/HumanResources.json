@@ -34,6 +34,12 @@
       "name": "None"
     },
     {
+      "name": "OrgChartManager"
+    },
+    {
+      "name": "OrgChartReports"
+    },
+    {
       "name": "TransferEmployee"
     },
     {
@@ -76,6 +82,21 @@
     {
       "name": "CotractActions",
       "roles": []
+    },
+    {
+      "name": "JobTitle",
+      "roles": []
+    },
+    {
+      "name": "NewEmployee",
+      "roles": []
+    },
+    {
+      "name": "NewEmployeeRelocation",
+      "roles": [
+        "NewEmployeeReloDestination",
+        "NewEmployeeReloOrigin"
+      ]
     },
     {
       "name": "EmployeeTitle",
@@ -121,7 +142,6 @@
         {
           "canonicalForm": "Information Technologies",
           "list": [
-            "IT",
             "Sysadmins",
             "1235"
           ]
@@ -129,8 +149,8 @@
         {
           "canonicalForm": "Development and Operations",
           "list": [
-            "DevOps",
-            "1236"
+            "1236",
+            "DevOpsDep"
           ]
         },
         {
@@ -151,7 +171,6 @@
         {
           "canonicalForm": "Internal Sales",
           "list": [
-            "IS",
             "isale",
             "insale",
             "12349"
@@ -179,7 +198,13 @@
       "roles": []
     }
   ],
-  "patternAnyEntities": [],
+  "patternAnyEntities": [
+    {
+      "name": "FormName",
+      "explicitList": [],
+      "roles": []
+    }
+  ],
   "regex_entities": [
     {
       "name": "HR-number",
@@ -190,6 +215,10 @@
   "prebuiltEntities": [
     {
       "name": "datetimeV2",
+      "roles": []
+    },
+    {
+      "name": "keyPhrase",
       "roles": []
     },
     {
@@ -205,9 +234,97 @@
       "roles": []
     }
   ],
-  "model_features": [],
+  "model_features": [
+    {
+      "name": "Cities",
+      "mode": true,
+      "words": "new york,seattle,london,toronto,san diego,san francisco,washington,miami,dallas,new orleans,chicago,atlanta,boston,tampa,philadelphia,denver,baltimore,columbus,cincinnati,pittsburgh,indianapolis,minneapolis,houston,cleveland,sacramento,kansas,richmond,wroclaw,york,gdansk,krakow",
+      "activated": true
+    }
+  ],
   "regex_features": [],
-  "patterns": [],
+  "patterns": [
+    {
+      "pattern": "who will be {personName}['s] manager [[on]{datetimeV2}?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "i'm looking for the form named [\"]{FormName}[\"][.]",
+      "intent": "FindForm"
+    },
+    {
+      "pattern": "where is [\"]{FormName}[\"] on the server[?]",
+      "intent": "FindForm"
+    },
+    {
+      "pattern": "who does {personName} manage[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "who are {personName}['s] subordinates[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "who does {personName} boss[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "who authored [\"]{FormName}[\"] and what is the most current version[?]",
+      "intent": "FindForm"
+    },
+    {
+      "pattern": "who are {personName} direct reports[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "who will be {personName}['s] manager [[in]{datetimeV2}?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who does {personName} supervise[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "where is the form [\"]{FormName}[\"] and who needs to sign it after i read it[?]",
+      "intent": "FindForm"
+    },
+    {
+      "pattern": "who is {personName} the subordinate of[?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who does {personName} directly report to[?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who does {personName} report to[?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who was {personName}['s] manager [[on]{datetimeV2}?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who is the boss of {personName}[?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who is {personName}['s] manager [[on]{datetimeV2}?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who reports to {personName}[?]",
+      "intent": "OrgChartReports"
+    },
+    {
+      "pattern": "who is {personName}['s] supervisor[?]",
+      "intent": "OrgChartManager"
+    },
+    {
+      "pattern": "who is {personName}['s] manager[?]",
+      "intent": "OrgChartManager"
+    }
+  ],
   "utterances": [
     {
       "text": "a yes from me",
@@ -253,17 +370,89 @@
     {
       "text": "apply for devops job 5678749",
       "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 10,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "apply for tile work.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 10,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "are there any babysitting jobs in the city today?",
+      "intent": "GetJobInformation",
       "entities": []
     },
     {
       "text": "are there any new positions in the seattle office?",
       "intent": "GetJobInformation",
-      "entities": []
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 35,
+          "endPos": 41
+        }
+      ]
     },
     {
       "text": "are there any remote worker or telecommute jobs open for engineers?",
       "intent": "GetJobInformation",
       "entities": []
+    },
+    {
+      "text": "attached resume for devops engineer",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 20,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "attached resume for landscape architect.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 20,
+          "endPos": 38
+        }
+      ]
+    },
+    {
+      "text": "attached resume for solution architect.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 20,
+          "endPos": 37
+        }
+      ]
+    },
+    {
+      "text": "attached resume for systems engineer",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 20,
+          "endPos": 35
+        }
+      ]
     },
     {
       "text": "author of hrf-546234?",
@@ -403,6 +592,11 @@
       "entities": []
     },
     {
+      "text": "does the new job in the warehouse for a stocker require that i apply with a resume?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
       "text": "fill out application for job 123456",
       "intent": "ApplyForJob",
       "entities": []
@@ -468,8 +662,30 @@
       "entities": []
     },
     {
+      "text": "here is my line cook application.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 16,
+          "endPos": 19
+        }
+      ]
+    },
+    {
       "text": "here is my resume for the part-time receptionist post.",
       "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 36,
+          "endPos": 52
+        }
+      ]
+    },
+    {
+      "text": "here is my resume, looking for a new post at the community college using computers.",
+      "intent": "GetJobInformation",
       "entities": []
     },
     {
@@ -485,6 +701,11 @@
     {
       "text": "how are you doing?",
       "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "how many new yard work jobs are available?",
+      "intent": "GetJobInformation",
       "entities": []
     },
     {
@@ -508,6 +729,16 @@
       "entities": []
     },
     {
+      "text": "i have a masters in library and archive management. any new positions?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "i heard there was a medical coding job that requires a resume.",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
       "text": "i need to begin over and restart",
       "intent": "Utilities.StartOver",
       "entities": []
@@ -516,6 +747,17 @@
       "text": "i need your help",
       "intent": "Utilities.Help",
       "entities": []
+    },
+    {
+      "text": "i want to apply for the management job in sales.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 24,
+          "endPos": 33
+        }
+      ]
     },
     {
       "text": "i want to apply for the new accounting job",
@@ -533,9 +775,42 @@
       "entities": []
     },
     {
+      "text": "i would like a job helping college kids write their c.v.s.",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "i'm a registered nurse. here is my resume.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 6,
+          "endPos": 21
+        }
+      ]
+    },
+    {
       "text": "i'm applying for the art desk job with this paperwork.",
       "intent": "ApplyForJob",
-      "entities": []
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 21,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "i'm applying for the program manager desk in r&d",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 21,
+          "endPos": 35
+        }
+      ]
     },
     {
       "text": "i'm applying for the summer college internship in research and development in san diego",
@@ -551,12 +826,34 @@
     {
       "text": "i'm looking for a co-working situation in the tampa office.",
       "intent": "GetJobInformation",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 46,
+          "endPos": 50
+        }
+      ]
+    },
+    {
+      "text": "i'm looking for the form named \"office move request including physical assets\".",
+      "intent": "FindForm",
       "entities": []
     },
     {
       "text": "i'm requesting to submit my resume to the temporary position in the cafeteria.",
       "intent": "ApplyForJob",
       "entities": []
+    },
+    {
+      "text": "i'm submitting my application for roofer and framer.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 34,
+          "endPos": 50
+        }
+      ]
     },
     {
       "text": "i'm submitting my resume for the new autocar team in columbus",
@@ -575,9 +872,25 @@
       "entities": []
     },
     {
-      "text": "is there an internship in the san francisco office?",
+      "text": "is there a new hr post for labor relations and negotiations?",
       "intent": "GetJobInformation",
       "entities": []
+    },
+    {
+      "text": "is there an intern desk at the newspaper?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "is there an internship in the san francisco office?",
+      "intent": "GetJobInformation",
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 30,
+          "endPos": 42
+        }
+      ]
     },
     {
       "text": "is there any devops jobs?",
@@ -600,7 +913,17 @@
       "entities": []
     },
     {
+      "text": "i've worked 8 years as an ems driver. any new jobs?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
       "text": "jane doe is the worse",
+      "intent": "EmployeeFeedback",
+      "entities": []
+    },
+    {
+      "text": "jane doe is the worse employee ever!",
       "intent": "EmployeeFeedback",
       "entities": []
     },
@@ -622,7 +945,13 @@
     {
       "text": "joe doe did a great job in seattle",
       "intent": "EmployeeFeedback",
-      "entities": []
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 27,
+          "endPos": 33
+        }
+      ]
     },
     {
       "text": "john smith did a nice job of welcoming back a co-worker from maternity leave",
@@ -760,6 +1089,22 @@
       ]
     },
     {
+      "text": "move wayne berry from miami to mount vernon",
+      "intent": "EmployeeRelocation",
+      "entities": [
+        {
+          "entity": "Location::Source",
+          "startPos": 22,
+          "endPos": 26
+        },
+        {
+          "entity": "Location::Destination",
+          "startPos": 31,
+          "endPos": 42
+        }
+      ]
+    },
+    {
       "text": "mv jill jones leaving cairo headed to tampa",
       "intent": "EmployeeRelocation",
       "entities": [
@@ -781,6 +1126,22 @@
       "entities": []
     },
     {
+      "text": "my c.v. shows i'm good at analyzing procurement, budgets, and lost money. is there anything for this type of work?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "my curriculum vitae for professor of biology is enclosed.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 24,
+          "endPos": 43
+        }
+      ]
+    },
+    {
       "text": "my papers for the tulsa accounting internship are attached.",
       "intent": "ApplyForJob",
       "entities": [
@@ -794,6 +1155,28 @@
     {
       "text": "my paperwork for the holiday delivery position",
       "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 21,
+          "endPos": 36
+        }
+      ]
+    },
+    {
+      "text": "my resume for camp counselor is attached.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 14,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "new food handling jobs require application?",
+      "intent": "GetJobInformation",
       "entities": []
     },
     {
@@ -1000,9 +1383,20 @@
       ]
     },
     {
+      "text": "show jon doe manager",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
       "text": "show me all the jobs for engineers that were added in the last 2 days.",
       "intent": "GetJobInformation",
-      "entities": []
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 25,
+          "endPos": 33
+        }
+      ]
     },
     {
       "text": "shut up",
@@ -1047,7 +1441,13 @@
     {
       "text": "submit resume for devops",
       "intent": "ApplyForJob",
-      "entities": []
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 18,
+          "endPos": 23
+        }
+      ]
     },
     {
       "text": "submit resume for engineering position",
@@ -1070,6 +1470,17 @@
       "entities": []
     },
     {
+      "text": "this is my c.v. for administrative assistant.",
+      "intent": "ApplyForJob",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 20,
+          "endPos": 43
+        }
+      ]
+    },
+    {
       "text": "this is my c.v. for post 234123 in tampa.",
       "intent": "ApplyForJob",
       "entities": [
@@ -1079,6 +1490,11 @@
           "endPos": 39
         }
       ]
+    },
+    {
+      "text": "this is my resume for the new accounting position.",
+      "intent": "ApplyForJob",
+      "entities": []
     },
     {
       "text": "title of hrf-456234?",
@@ -1161,7 +1577,13 @@
     {
       "text": "what accounting positions are open in the london office?",
       "intent": "GetJobInformation",
-      "entities": []
+      "entities": [
+        {
+          "entity": "Location::Regular",
+          "startPos": 42,
+          "endPos": 47
+        }
+      ]
     },
     {
       "text": "what is devops",
@@ -1181,10 +1603,31 @@
     {
       "text": "what positions are available for senior engineers?",
       "intent": "GetJobInformation",
+      "entities": [
+        {
+          "entity": "JobTitle",
+          "startPos": 33,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "what positions are available in child and home care?",
+      "intent": "GetJobInformation",
       "entities": []
     },
     {
       "text": "what's up",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "what's up, dude?",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "what's up?",
       "intent": "Greetings",
       "entities": []
     },
@@ -1199,7 +1642,27 @@
       "entities": []
     },
     {
+      "text": "where are the earth drilling jobs right now?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
+      "text": "where are the roofing jobs today?",
+      "intent": "GetJobInformation",
+      "entities": []
+    },
+    {
       "text": "where is hrf-345678?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "where is request relocation from employee new to the company on the server?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "where is the form what to do when a fire breaks out in the lab and who needs to sign it after i read it?",
       "intent": "FindForm",
       "entities": []
     },
@@ -1209,8 +1672,68 @@
       "entities": []
     },
     {
+      "text": "who are jill jones direct reports?",
+      "intent": "OrgChartReports",
+      "entities": []
+    },
+    {
+      "text": "who are john w. smith's subordinates?",
+      "intent": "OrgChartReports",
+      "entities": []
+    },
+    {
+      "text": "who authored \"health and wellness requests on the main campus\" and what is the most current version?",
+      "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "who does jill jones directly report to?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
+      "text": "who does jill jones supervise?",
+      "intent": "OrgChartReports",
+      "entities": []
+    },
+    {
+      "text": "who does john w. smith manage?",
+      "intent": "OrgChartReports",
+      "entities": []
+    },
+    {
+      "text": "who does john w. smith report to?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
+      "text": "who is jill jones supervisor?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
+      "text": "who is john w. smith manager?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
+      "text": "who is john w. smith the subordinate of?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
+      "text": "who is the boss of jill jones?",
+      "intent": "OrgChartManager",
+      "entities": []
+    },
+    {
       "text": "who needs to authorize form hrf-123456?",
       "intent": "FindForm",
+      "entities": []
+    },
+    {
+      "text": "who reports to john w. smith?",
+      "intent": "OrgChartReports",
       "entities": []
     },
     {
